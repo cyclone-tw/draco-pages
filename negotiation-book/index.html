@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>爭取更多 — 全書精華摘要 | 《華頓商學院最受歡迎的談判課》</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f8f9fc;
+      --surface: #ffffff;
+      --text: #1a1a2e;
+      --text-secondary: #5a6178;
+      --accent: #1e3a5f;
+      --accent-light: #2c5282;
+      --gold: #d4a017;
+      --gold-light: #f0d060;
+      --gold-bg: #fdf8e8;
+      --gold-border: #e8c84a;
+      --blue-bg: #eef3fa;
+      --blue-border: #b8cfe8;
+      --border: #e2e8f0;
+      --shadow: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 14px rgba(0,0,0,0.08);
+      --gradient: linear-gradient(135deg, #1a2a4a, #1e3a5f, #2c5282);
+      --gradient-gold: linear-gradient(135deg, #d4a017, #e8b830, #f0d060);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0d1525;
+        --surface: #16243d;
+        --text: #edf2f7;
+        --text-secondary: #94a3b8;
+        --accent: #6ba3d6;
+        --accent-light: #90c0e8;
+        --gold: #f0d060;
+        --gold-light: #f7e38a;
+        --gold-bg: #2a2312;
+        --gold-border: #8a7020;
+        --blue-bg: #142035;
+        --blue-border: #1e3a5f;
+        --border: #283550;
+        --shadow: 0 1px 3px rgba(0,0,0,0.3);
+        --shadow-md: 0 4px 14px rgba(0,0,0,0.4);
+        --gradient: linear-gradient(135deg, #2c5282, #4a8abf, #6ba3d6);
+        --gradient-gold: linear-gradient(135deg, #d4a017, #e8b830, #f0d060);
+      }
+    }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 1.25rem; }
+
+    /* Hero */
+    .hero {
+      background: var(--gradient);
+      padding: 3rem 1.25rem 2rem;
+      text-align: center;
+      color: #fff;
+    }
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.02em;
+    }
+    .hero .gold-text {
+      background: var(--gradient-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 1rem;
+      opacity: 0.85;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Tab Navigation */
+    .tab-nav-wrapper {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--surface);
+      border-bottom: 2px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .tab-nav {
+      display: flex;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--gold) transparent;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0;
+    }
+    .tab-nav::-webkit-scrollbar { height: 3px; }
+    .tab-nav::-webkit-scrollbar-track { background: transparent; }
+    .tab-nav::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+    .tab-btn {
+      flex-shrink: 0;
+      padding: 0.75rem 1rem;
+      border: none;
+      background: none;
+      color: var(--text-secondary);
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .tab-btn:hover { color: var(--accent); }
+    .tab-btn.active {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+      font-weight: 700;
+    }
+
+    /* Tab Content */
+    .tab-panel { display: none; padding: 2rem 0 3rem; }
+    .tab-panel.active { display: block; }
+
+    .ch-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+    .ch-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .section-label {
+      display: inline-block;
+      background: var(--gradient);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+
+    .summary-text {
+      font-size: 0.95rem;
+      line-height: 1.9;
+      margin-bottom: 2rem;
+      padding: 1.25rem;
+      background: var(--blue-bg);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .points-list {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+    .points-list li {
+      padding: 0.75rem 1rem 0.75rem 1.5rem;
+      margin-bottom: 0.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.92rem;
+      position: relative;
+      box-shadow: var(--shadow);
+    }
+    .points-list li::before {
+      content: '▸';
+      position: absolute;
+      left: 0.5rem;
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .points-list li strong {
+      color: var(--accent);
+    }
+
+    .case-card {
+      padding: 1rem 1.25rem;
+      margin-bottom: 0.75rem;
+      background: var(--gold-bg);
+      border: 1px solid var(--gold-border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+    }
+    .case-card strong { color: var(--accent); }
+
+    .quote-box {
+      margin: 2rem 0;
+      padding: 1.25rem 1.5rem;
+      background: var(--surface);
+      border-left: 4px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--accent);
+      box-shadow: var(--shadow);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+    footer .book-info { font-weight: 500; margin-bottom: 0.5rem; }
+
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 1.6rem; }
+      .hero p { font-size: 0.9rem; }
+      .tab-btn { padding: 0.65rem 0.75rem; font-size: 0.75rem; }
+      .ch-title { font-size: 1.25rem; }
+      .container { padding: 0 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <h1><span class="gold-text">爭取更多</span> — 全書精華摘要</h1>
+  <p>《華頓商學院最受歡迎的談判課》16 章核心觀念、真實案例與關鍵金句</p>
+</div>
+
+<div class="tab-nav-wrapper">
+  <nav class="tab-nav" id="tabNav">
+    <button class="tab-btn active" data-tab="ch01">01 不一樣的思維</button>
+    <button class="tab-btn" data-tab="ch02">02 人是重點</button>
+    <button class="tab-btn" data-tab="ch03">03 失敗的原因</button>
+    <button class="tab-btn" data-tab="ch04">04 難搞的對象</button>
+    <button class="tab-btn" data-tab="ch05">05 不等值交換</button>
+    <button class="tab-btn" data-tab="ch06">06 動之以情</button>
+    <button class="tab-btn" data-tab="ch07">07 工具清單</button>
+    <button class="tab-btn" data-tab="ch08">08 文化差異</button>
+    <button class="tab-btn" data-tab="ch09">09 職場談判</button>
+    <button class="tab-btn" data-tab="ch10">10 商場談判</button>
+    <button class="tab-btn" data-tab="ch11">11 人際談判</button>
+    <button class="tab-btn" data-tab="ch12">12 親子談判</button>
+    <button class="tab-btn" data-tab="ch13">13 出差旅行</button>
+    <button class="tab-btn" data-tab="ch14">14 日常生活</button>
+    <button class="tab-btn" data-tab="ch15">15 公共議題</button>
+    <button class="tab-btn" data-tab="ch16">16 身體力行</button>
+  </nav>
+</div>
+
+<div class="container">
+
+<!-- ============ CH01 ============ -->
+<div class="tab-panel active" id="ch01">
+  <h2 class="ch-title">第一章：談判，需要不一樣的思維</h2>
+  <p class="ch-subtitle">Chapter 1 · Thinking Differently About Negotiation</p>
+
+  <span class="section-label">章節主旨</span>
+  <div class="summary-text">
+    本章是全書的核心框架，作者提出談判不是靠強勢壓制或純粹的理性計算，而是一套以心理學為基礎、任何人都可以學習並即時運用的工具與流程。談判的終極目標只有一個：<strong>爭取更多</strong>。作者透過十二項核心技巧，重新定義何謂「談判」，並說明這套以人為本、以目標為導向的思維，如何從根本上改變人際互動的結果。
+  </div>
+
+  <span class="section-label">核心重點</span>
+  <ul class="points-list">
+    <li><strong>目標至關重要</strong>：談判的一切行動都必須服務於「你想達成的目標」，而非模糊的「雙贏」或「建立關係」。談判前先明確定義目標，過程中不斷自問：「這個行動有助於達成目標嗎？」</li>
+    <li><strong>以對方為中心</strong>：談判中你是「最不重要的人」，最重要的是對方腦中在想什麼——他們的感受、知覺、需求、誰對他們重要。了解對方，才能說服對方。</li>
+    <li><strong>情感先於理性</strong>：世界不是靠理性運作的，談判愈重要，人愈容易失去理性。有效的說服是讓對方「感受」到你希望他們感受的事，而非只是講道理。</li>
+    <li><strong>循序漸進，不求一步到位</strong>：大膽的要求往往嚇退對方。以小步驟引導對方從他的立場移向你的目標，持續堅持直到達成。</li>
+    <li><strong>談判是後天養成的技能</strong>：卓越的談判者不是天生的。必須在日常生活中刻意練習，從小事練習，記日誌，事後檢討，不斷修正清單。</li>
+  </ul>
+
+  <span class="section-label">真實案例</span>
+  <div class="case-card"><strong>陳瑞燕趕搭巴黎班機</strong>：登機門已關，她沒有爭論誰對誰錯，而是找到真正的決策者（機長），在最顯眼的位置以眼神懇求，最終讓機長重開空橋讓她登機。</div>
+  <div class="case-card"><strong>王唯唯從膽怯到征服談判高手</strong>：一位身形瘦小、起初極度害羞的南加大女學生，在十二週密集練習後，最終在全班面前讓強勢的談判對手心服口服，贏得起立鼓掌。</div>
+  <div class="case-card"><strong>保羅．瑟曼幫客戶省下三億美元</strong>：紐約管理顧問將課堂學到的工具應用於商業談判，第一年替客戶省下三千四百萬美元，多年累計省了三億美元。</div>
+  <div class="case-card"><strong>凱洛．麥德莫的一學期成果</strong>：一位學生在一學期內，用課堂工具取得加薪四萬五千美元、航空公司賠款、有線電視折扣等十項具體成果。</div>
+
+  <div class="quote-box">「談判就是讓對方感受你希望他們感受的事，這種做法會自動產生約制力，因為你是訴諸對方的情感。」</div>
+  <div class="quote-box">「成敗之間的差距，是兩毫米。」——北歐航空總裁詹．卡森</div>
+</div>
+
+<!-- ============ CH02 ============ -->
+<div class="tab-panel" id="ch02">
+  <h2 class="ch-title">第二章：人（幾乎）是一切的重點</h2>
+  <p class="ch-subtitle">Chapter 2 · People Are (Almost) Everything</p>
+
+  <span class="section-label">章節主旨</span>
+  <div class="summary-text">
+    本章深入展開第一章中「以對方為中心」這一核心思維，以大量真實案例說明：談判成功有超過五成取決於「人際關係」，只有不到一成取決於你的專業知識或實質身分。在正式議題之前，你必須先了解對方今天的情緒狀態、腦中的想法，以及對他們重要的第三方。把對方當成「獨一無二的個人」對待，是爭取更多的最根本方法。
+  </div>
+
+  <span class="section-label">核心重點</span>
+  <ul class="points-list">
+    <li><strong>先處理「人」，再處理「議題」</strong>：談判中超過 50% 的成敗取決於人際關係，只有約 10% 取決於實質議題。如果談判卡住了，應立刻暫停討論議題，回頭先修復人際連結。</li>
+    <li><strong>你是談判中最不重要的人</strong>：最重要的是對方，第二重要的是對對方影響深遠的第三方。在說服對方之前，必須先弄清楚：誰對他最重要？他今天的狀態如何？</li>
+    <li><strong>把對方當個人，而非當成標籤</strong>：「如何和俄羅斯人談判」這類思維根本上是錯的。每個人都是獨一無二的個體，文化標準只是平均值。</li>
+    <li><strong>肯定對方的地位與權力</strong>：重視對方、肯定他們的能力與判斷，會讓對方想要回報你。這適用於執行長到夜間警衛，不分職位高低。</li>
+    <li><strong>信任雖重要，但談判真正需要的是承諾</strong>：即使缺乏信任，也可以透過合約機制、第三方見證、漸進式測試等替代方式，取得對方可靠的承諾。</li>
+  </ul>
+
+  <span class="section-label">真實案例</span>
+  <div class="case-card"><strong>好萊塢作家大罷工的終結</strong>：2008 年罷工長達三個月，作者建議談判代表先把議題放在一邊，改在早餐時閒聊、表達同理心。鮑曼照做，雙方在數天內就達成協議。</div>
+  <div class="case-card"><strong>艾麗莎．賴達的機位升等</strong>：注意到登機口服務人員生病，主動送上水和止咳藥，之後才禮貌詢問有無靠走道的機會，最終換到出口座位，還獲得免費餐點和耳機。</div>
+  <div class="case-card"><strong>停車場的計程車司機</strong>：作者在費城交通堵塞中，改口肯定計程車司機的專業身分：「這幾部車裡，你是唯一的專業駕駛。」司機立刻讓步，堵塞解除。</div>
+  <div class="case-card"><strong>自閉症患者阿尚的麻醉手術</strong>：麻醉醫師透過理解阿尚的需求，調整每一個行動——坐在同等高度、收起針頭、在麻醉罩塗上草莓甜味，讓他在放心與合作中平靜入睡。</div>
+  <div class="case-card"><strong>中國企業欠款七百天的追討</strong>：作者建議從「面子」切入，明確告訴對方：欠債不還讓美方員工和家人蒙羞。三週後，中方全額還款。</div>
+
+  <div class="quote-box">「你是談判中最不重要的人；最重要的是對方，第二重要的是對談判者重要的第三方。」</div>
+  <div class="quote-box">「談判真正需要的是『承諾』，信任只是獲得承諾的一種方法。」</div>
+</div>
+
+<!-- ============ CH03 ============ -->
+<div class="tab-panel" id="ch03">
+  <h2 class="ch-title">第三章：談判失敗的最大原因</h2>
+  <p class="ch-subtitle">Chapter 3 · The Biggest Cause of Negotiation Failure</p>
+
+  <span class="section-label">章節主旨</span>
+  <div class="summary-text">
+    談判失敗最根本的原因不是立場分歧，而是<strong>溝通失敗</strong>，而溝通失敗的核心是<strong>知覺印象的落差</strong>——每個人因為背景、價值觀、經驗的不同，對同樣的事物會產生截然不同的感知。只有先深入了解對方腦中的世界，才能真正開始說服他人。
+  </div>
+
+  <span class="section-label">核心重點</span>
+  <ul class="points-list">
+    <li><strong>知覺印象因人而異，衝突由此而生</strong>：同一張圖，不同人看到完全不同的東西；你認為顯而易見的事實，對方可能根本「看不見」。</li>
+    <li><strong>先了解對方的看法，再說明自己的看法</strong>：說明自己的觀點是談判中最後才做的事；談判開始時，應先以提問挖掘對方的想法。</li>
+    <li><strong>溝通是首要之務，不可輕言中斷</strong>：無論對對方有多大的厭惡或反感，持續溝通比退席抗議更明智。說話是一種力量，拒絕溝通才是示弱。</li>
+    <li><strong>重視對方，避免指責</strong>：技巧差的談判者責怪他人的比率是優秀談判者的三倍，而責怪讓對方更無法聽進你說的話。</li>
+    <li><strong>有效溝通的工具</strong>：持續提問、仔細傾聽、常做歸納、進行角色對調、保持冷靜、不爭對錯、把焦點放在未來目標而非過去責任上。</li>
+  </ul>
+
+  <span class="section-label">真實案例</span>
+  <div class="case-card"><strong>摩根大通執行董事與侄女的睡前故事</strong>：侄女堅持要兩個故事，追問後發現真正問題是侄女還不累，最終以一個較長的故事達成共識。說明先問清楚定義的重要性。</div>
+  <div class="case-card"><strong>花旗集團 MBA 新人的職涯談判</strong>：站在副總裁的立場做角色對調思考，主動提出協助新計畫的方案。結果獲得一萬五千美元獎金，還受邀出席花旗全球董事會。</div>
+  <div class="case-card"><strong>人質談判悲劇案例</strong>：談判代表採用強硬手段，導致男子殺害女友。若能設身處地思考對方的心理需求，或許悲劇可以避免。</div>
+  <div class="case-card"><strong>微軟反壟斷案</strong>：若政府當時仔細聆聽微軟說的話，注意到「不放在產品上」並未否定放在「網站或廣告」的可能性，或許可以提早十九個月達成和解。</div>
+
+  <div class="quote-box">「除非對方有意聽你說話，否則你無法告訴任何人任何事。」——電影《印度之旅》蓋博教授</div>
+  <div class="quote-box">說明「你的」看法，是你最後才要做的事；首先你應該了解「對方的」看法。</div>
+</div>
+
+<!-- ============ CH04 ============ -->
+<div class="tab-panel" id="ch04">
+  <h2 class="ch-title">第四章：面對難搞的談判對象</h2>
+  <p class="ch-subtitle">Chapter 4 · Dealing With Hard Bargainers</p>
+
+  <span class="section-label">章節主旨</span>
+  <div class="summary-text">
+    面對難搞的談判對象，最有力的武器不是強硬對抗，而是<strong>運用對方自己設下的標準</strong>。人天生不願違背自己的承諾和所屬組織的規範，只要冷靜、循序漸進地以對方的標準提問，往往能在不激化衝突的情況下達到目標，同時保住雙方的關係。
+  </div>
+
+  <span class="section-label">核心重點</span>
+  <ul class="points-list">
+    <li><strong>運用對方的標準是最強大的談判工具之一</strong>：標準可以是公司政策、廣告承諾、以前的表述或過去的先例。人因為道德羅盤和擔心第三方的眼光，通常不願公開違背自己訂下的規範。</li>
+    <li><strong>循序漸進是成功的關鍵</strong>：多數談判失敗，是因為要求對方一次跨太大步。應把談判分解成多個小步驟，每一步都取得認同。</li>
+    <li><strong>表述方式決定談判勝負</strong>：同樣的事實，以不同的方式呈現，說服力截然不同。好的表述能讓對方在腦中「看見」問題的真實樣貌。</li>
+    <li><strong>指出對方的不當行徑，但絕不讓自己成為議題</strong>：冷靜指出而非情緒化反擊，能讓所有負面焦點集中在對方身上。甘地和馬丁路德金恩的非暴力策略，正是這一原則的最高示範。</li>
+    <li><strong>把焦點放在目標上，而非情緒</strong>：就像優秀的運動員把注意力放在球而非比分上。</li>
+  </ul>
+
+  <span class="section-label">真實案例</span>
+  <div class="case-card"><strong>麥當勞薯條事件</strong>：打烊前五分鐘拿到濕軟薯條，學生沒有爭吵，而是拿出麥當勞自己印製的「新鮮保證」傳單平靜詢問，最終換到新鮮薯條。</div>
+  <div class="case-card"><strong>賓大法學院申請案</strong>：傑森對照招生簡章逐一列出自己符合的標準，最後問「請告訴我，我哪裡有錯」。寄信四天後獲准入學。</div>
+  <div class="case-card"><strong>台灣飯店電話費交涉</strong>：以循序漸進的方式提問：「不事先告知就收費，是你們的規定嗎？」最終費用全免。</div>
+  <div class="case-card"><strong>烏克蘭財政部億元債券談判</strong>：作者逐字朗讀擔保書中「不可撤銷」「無條件」等字眼，逐一追問其定義。最終對方重新提出擔保，交易完成。</div>
+  <div class="case-card"><strong>科恩眼鏡優惠券事件</strong>：冷靜逐步確認連鎖店規範，即使店長最後失控大叫，他仍保持冷靜沉默，讓全店顧客親眼目睹，店長最終道歉並全額兌換。</div>
+
+  <div class="quote-box">妥協往往是一種懶惰又無效的協商方法。運用對方的標準比折中妥協更有效。</div>
+  <div class="quote-box">指出不當行徑、但不讓自己成為議題——這是讓對方自己走向毀滅的最強工具。</div>
+</div>
+
+<!-- ============ CH05 ============ -->
+<div class="tab-panel" id="ch05">
+  <h2 class="ch-title">第五章：交換評價不相等的東西</h2>
+  <p class="ch-subtitle">Chapter 5 · Trading Items of Unequal Value</p>
+
+  <span class="section-label">章節主旨</span>
+  <div class="summary-text">
+    談判不只是爭數字，而是找出雙方對同一件事物的評價差異，以低成本換取高價值。本章的核心技巧是「交換評價不相等的東西」：先了解對方腦中真正想要什麼（尤其是無形的需求），再找出自己可以給予的東西，透過彼此評價落差的交換，讓雙方都得到比原本更多的東西，把餅做大而非零和競爭。
+  </div>
+
+  <span class="section-label">核心重點</span>
+  <ul class="points-list">
+    <li><strong>無形的東西往往是成交的關鍵</strong>：金錢以外的尊重、安全感、認同、夢想、恐懼，才是真正驅動對方行為的力量。</li>
+    <li><strong>交換的四步流程</strong>：了解對方腦中的想法 → 確認自己的需求 → 找出一方成本極低但另一方極為重視的東西 → 進行交換。</li>
+    <li><strong>議題愈多，談判愈容易</strong>：桌上有更多議題，就有更多評價不相等的東西可以交換，達成協議的空間因此更大。</li>
+    <li><strong>猜測對方的需求也有效</strong>：猜對了，關係改善；猜錯了，對方會糾正你，同樣能獲得關鍵資訊——兩種結果都讓你得到更多。</li>
+    <li><strong>態度改變是前提</strong>：放棄「凌駕對方」的心態，轉為思考「我們如何一起獲得更多」。</li>
+  </ul>
+
+  <span class="section-label">真實案例</span>
+  <div class="case-card"><strong>NBA 門票換百萬合約</strong>：造紙業主管送出四張 NBA 總決賽門票，換來價值數百萬美元的紙張供應合約。客戶要的不是折扣，而是賣方有多願意為他著想。</div>
+  <div class="case-card"><strong>泰科收購子公司還能收錢</strong>：發現英國公司必須在三週內脫手虧損子公司，泰科以「迅速接手」換取免費取得，最終英國公司反而付給泰科六萬英鎊。</div>
+  <div class="case-card"><strong>電信公司基地台土地使用權</strong>：研究電信公司的真實需求後，從原本預期的八萬美元談判成果，最終拿到七十五萬美元。</div>
+  <div class="case-card"><strong>作者用電子郵件說服心臟外科名醫</strong>：研究對方的研究主題，提出真誠的學術問題，建立人際關係，最終說服醫師縮短假期提前回來動刀。</div>
+  <div class="case-card"><strong>離婚夫妻的公司合併困局</strong>：分別找出雙方真正的深層需求，一一解決，最終促成離婚協議與三億美元公司合併。</div>
+
+  <div class="quote-box">「什麼是對你沒成本，卻是我想要的；什麼是對我沒成本，卻是你想要的？」</div>
+  <div class="quote-box">只要你把焦點放在人際關係上，任何產品或服務都不只是一項商品而已。</div>
+</div>
+
+<!-- ============ CH06 ============ -->
+<div class="tab-panel" id="ch06">
+  <h2 class="ch-title">第六章：暫停說理，動之以情</h2>
+  <p class="ch-subtitle">Chapter 6 · Emotion</p>
+
+  <span class="section-label">章節主旨</span>
+  <div class="summary-text">
+    談判中最大的障礙往往不是條件談不攏，而是情緒。當對方陷入情緒時，邏輯和道理完全失效——此時唯一有效的方法是「動之以情」：先處理對方的情感需求，讓他們冷靜下來、願意聆聽，才有辦法推進到真正的目標。本章系統性地分析情緒在談判中的破壞力，並提供一套以同理心取代對抗的實戰工具。
+  </div>
+
+  <span class="section-label">核心重點</span>
+  <ul class="points-list">
+    <li><strong>情感是談判的最大敵人，同理心卻是最強工具</strong>：情感的焦點在「自己」，使人失去理性判斷；同理心的焦點在「對方」，能安撫情緒、重建溝通橋梁。</li>
+    <li><strong>威脅是效果最差的談判技巧</strong>：研究顯示，訴諸威脅者達成協議的機率只有不訴諸威脅者的一半。</li>
+    <li><strong>「動之以情」的方式因人而異</strong>：可以是道歉、讓步、發揮同理心、靜靜聆聽。重點是先搞清楚對方腦中的想法。</li>
+    <li><strong>自己的情緒也要管理</strong>：若自己情緒化，就要暫停談判。充分準備可以防止情緒失控。</li>
+    <li><strong>談判風格影響成敗</strong>：自信型、合作型、妥協型、迴避型、順從型各有優缺點。了解自己與對方的風格，有助於選擇最適合的策略。</li>
+  </ul>
+
+  <span class="section-label">真實案例</span>
+  <div class="case-card"><strong>五歲女兒不肯去縫針</strong>：麗莎不說理，而是逐步問：「媽咪愛妳嗎？媽咪會傷害妳嗎？」五分鐘內，女兒自己走上車。</div>
+  <div class="case-card"><strong>紐約離婚案</strong>：作者告訴怨恨前夫的妻子：「如果妳接受，那些錢就是他僅剩的一切。」女方一聽，立刻同意——因為找到了她真正的情感需求：讓前夫受苦。</div>
+  <div class="case-card"><strong>停車位爭奪</strong>：在洛杉磯街頭車位被搶，他走過去微笑說：「你可能沒看到我在等，我先跟你道謝。」給對方留了面子，車位歸還。</div>
+  <div class="case-card"><strong>以色列領事的「賄賂」誤解</strong>：哈薩克督察月薪僅十二美元，他們只是不知道如何以合法方式要求兼職報酬。情緒化地貼上「不道德」標籤，讓雙方都損失慘重。</div>
+  <div class="case-card"><strong>泰森食品的心理戰</strong>：對方故意帶他參觀屠宰場再端上炸雞，作者識破操弄，反而表現得比任何人都享受那頓炸雞，讓對方的伎倆失效。</div>
+
+  <div class="quote-box">想達成目標、解決棘手的問題，就要讓情緒降溫。</div>
+  <div class="quote-box">情緒化的人比較不在意協議是否滿足他們的需求，反而比較在意能不能傷害對方。</div>
+</div>
+
+<!-- ============ CH07 ============ -->
+<div class="tab-panel" id="ch07">
+  <h2 class="ch-title">第七章：整理——一套好用的談判工具清單</h2>
+  <p class="ch-subtitle">Chapter 7 · A Summary of Tools</p>
+
+  <span class="section-label">章節主旨</span>
+  <div class="summary-text">
+    本章介紹作者歷時二十五年發展出的「爭取更多」四象限模式，這套二十個步驟的工具清單，以結構化的方式引導談判者從釐清目標、分析情境、發展選項到採取行動，強調透明、解題導向，而非操弄，並以模擬談判作為正式談判前不可或缺的準備利器。
+  </div>
+
+  <span class="section-label">核心重點</span>
+  <ul class="points-list">
+    <li><strong>四象限模式是談判的骨幹</strong>：基礎資訊（目標、問題、關係人、替代方案、準備）→ 情境分析（需求、知覺、標準）→ 選項與降低風險（腦力激盪、排序、替代方案）→ 行動（挑選最佳選項、呈現方式、承諾、後續追蹤）。</li>
+    <li><strong>真正的問題往往不是表面問題</strong>：透過反覆自問「為什麼」，常發現原先認定的問題只是表象。</li>
+    <li><strong>模擬談判是另一半成功關鍵</strong>：正式談判前讓「問題擁有者」扮演對方角色進行角色互換，效果遠勝靠一個人獨自準備。</li>
+    <li><strong>腦力激盪不能過早批評</strong>：糟點子也可以觸發好點子，2006 年英國研究證實「糟點子是新的夯點子」。</li>
+    <li><strong>談判透明、非操弄</strong>：「爭取更多」模式甚至可以直接分享給對方，因為當雙方都懂得交換的原則，雙方都可以獲得更多。</li>
+  </ul>
+
+  <span class="section-label">真實案例</span>
+  <div class="case-card"><strong>Google 律師艾瑞克．霍克</strong>：透過角色互換練習，理解法務與業務之間的根本張力在於信任與溝通不足，此後律師主動把業務納入談判流程，結果更好。</div>
+  <div class="case-card"><strong>立陶宛科學部（1993 年）</strong>：首席科學家當眾反對流程，作者以動之以情安撫，最終讓眾人持續參與近八小時，產出大量點子，三年後全數落實。</div>
+  <div class="case-card"><strong>拉脫維亞新政府角色辯論（1993 年）</strong>：農業部長與國防部長爭辯補貼用途，作者要求兩人站在對方立場辯論，化解對立。</div>
+  <div class="case-card"><strong>SEI 金融管理公司</strong>：原以為問題是客戶要求合約外工作，運用模式後發現真正問題是合約本身規範太模糊。</div>
+  <div class="case-card"><strong>投資銀行家海蒂．范哈姆</strong>：透過角色互換發現客戶拒絕收費標準，真正原因是績效疑慮而非費用本身，改採績效為基礎的收費後，客戶業務反而增加。</div>
+
+  <div class="quote-box">「你一開始認定的問題，通常不是真正的問題，背後常潛藏著一些根本的問題。當真正的問題浮現時，你比較能找出解答。」</div>
+</div>
+
+<!-- ============ CH08 ============ -->
+<div class="tab-panel" id="ch08">
+  <h2 class="ch-title">第八章：如何因應文化差異</h2>
+  <p class="ch-subtitle">Chapter 8 · Dealing With Cultural Differences</p>
+
+  <span class="section-label">章節主旨</span>
+  <div class="summary-text">
+    本章重新定義「文化」與「多元」的真正意涵，指出文化差異根植於人們腦中的知覺印象，而非外部的種族、宗教或國籍標籤；有效因應差異的核心，在於深入了解對方認為自己屬於哪個文化、從對方的需求出發、坦承差異並視之為可以共同獲利的資產，而非需要消除的障礙。
+  </div>
+
+  <span class="section-label">核心重點</span>
+  <ul class="points-list">
+    <li><strong>多元的本質是心理認同，而非外表特徵</strong>：刻板印象是無效且危險的談判起點。</li>
+    <li><strong>關係在全球談判中是生存問題，不只是禮儀</strong>：在法律制度薄弱的地區，關係攸關生死。</li>
+    <li><strong>差異是價值的來源，而非問題</strong>：研究顯示多元性每提升 10%，淨收入增加 15%。</li>
+    <li><strong>不需要入境隨俗，但需要尊重並承認差異</strong>：強迫融入他人文化會導致「文化疲乏」。正確做法是公開承認自己的差異，表現出對對方文化的好奇與尊重。</li>
+    <li><strong>跨文化談判使用相同的核心工具</strong>：角色轉換、循序漸進、找出對方真正需求，在跨文化情境同樣有效。</li>
+  </ul>
+
+  <span class="section-label">真實案例</span>
+  <div class="case-card"><strong>玻利維亞古柯農轉種香蕉計畫</strong>：作者主動點明自己與農民的所有差異，聚焦「我們希望子女過得更好」的共同目標，成功讓三千位農民改種香蕉。</div>
+  <div class="case-card"><strong>馬拉松石油公司的文化誤讀</strong>：美方以為外國供應商「在等更低的價格」，角色互換後才發現對方等待的是長期人際承諾。</div>
+  <div class="case-card"><strong>巴斯夫美德兩部門衝突</strong>：問題根源在於「混亂文化」vs「秩序文化」的價值觀差異，需要重新設計整個溝通流程。</div>
+  <div class="case-card"><strong>印度女性黛娜的包辦婚姻談判</strong>：透過角色互換練習，先確認母親的感受，再逐步引入成功異族婚姻的家族友人作為第三方，最終父母不僅接受，還主動負擔婚禮費用。</div>
+  <div class="case-card"><strong>烏克蘭伏特加談判</strong>：作者帶了一位 160 公斤重的愛爾蘭投資銀行家擔任「指定代飲人」，以幽默方式橋接文化差距。</div>
+
+  <div class="quote-box">「差異有它的價值，差異可以增添價值。」</div>
+</div>
+
+<!-- ============ CH09 ============ -->
+<div class="tab-panel" id="ch09">
+  <h2 class="ch-title">第九章：如何在職場上爭取更多</h2>
+  <p class="ch-subtitle">Chapter 9 · Getting More at Work</p>
+
+  <span class="section-label">章節主旨</span>
+  <div class="summary-text">
+    職場談判不只發生在薪資協商桌上，而是每天、每個互動都在進行。本章教導讀者如何透過廣結善緣、因地制宜的準備、善用標準、交換評價不相等的東西、借助第三方力量，以及循序漸進的策略，在面試、升遷、薪酬、日常職場衝突乃至遭解雇等各種情境中爭取更多。核心精神是：讓自己對公司不可或缺，並讓周圍的人都願意支持你。
+  </div>
+
+  <span class="section-label">核心重點</span>
+  <ul class="points-list">
+    <li><strong>廣結善緣，建立職場聯盟</strong>：主動接觸各類人物，建立跨部門的支持網絡。人脈的廣度決定你在危機時能獲得多少保護。</li>
+    <li><strong>面試與求職要因地制宜、充分準備</strong>：針對每家公司的具體需求修改履歷，了解對方「需要什麼」比展示自己「有什麼」更重要。</li>
+    <li><strong>善用標準與重新表述</strong>：公司的政策、任務宣言、行業慣例都是談判的工具。把問題從個人需求轉化為公平性問題。</li>
+    <li><strong>交換評價不相等的東西</strong>：金錢以外的無形事物（職稱、學費補助、彈性工時）往往對雇主成本極低，卻對員工具有高度價值。</li>
+    <li><strong>循序漸進，避免一步登天</strong>：面對被拒絕時要堅持到底，以不強人所難的方式持續提問。</li>
+  </ul>
+
+  <span class="section-label">真實案例</span>
+  <div class="case-card"><strong>哈佛商學院女性主管</strong>：三年間主動幫各部門做額外貢獻、廣結善緣，當新管理層要裁員時，全公司都站出來為她發聲，成功保住工作。</div>
+  <div class="case-card"><strong>穆賀．崔維迪的求職逆轉</strong>：連續面試失敗十八次，後來針對每家公司量身準備，之後連續獲得十二次最終面試。</div>
+  <div class="case-card"><strong>馬克．索洛被拒後翻身</strong>：被世界銀行 IFC 拒絕後，重新定位商學院經歷，要求接受技能測試，最終成功獲得夢想中的開羅副投資長職位。</div>
+  <div class="case-card"><strong>亞歷山大．羅山可的考績談判</strong>：讓老闆看到「在收到所有資料前就提交考績」對雙方都不公平，老闆自行修改考績，年薪增加一萬三千五百美元。</div>
+  <div class="case-card"><strong>巴西律師的午餐升職</strong>：經濟危機中不談自己的需求，而是先問對方的孩子和公司前景，午餐結束時已順利獲得升職。</div>
+
+  <div class="quote-box">「這是他們對你最好的時候。」——如果面試時就有問題，要特別當心！</div>
+  <div class="quote-box">你不見得每次都能馬上獲得你想要的東西，但是你應該可以規劃一條幫你抵達終點的路徑。</div>
+</div>
+
+<!-- ============ CH10 ============ -->
+<div class="tab-panel" id="ch10">
+  <h2 class="ch-title">第十章：如何在商場上爭取更多</h2>
+  <p class="ch-subtitle">Chapter 10 · Getting More in the Marketplace</p>
+
+  <span class="section-label">章節主旨</span>
+  <div class="summary-text">
+    無論是在高檔百貨買鞋、向電信公司申訴、買賣汽車房屋，還是收購一家家族企業，都可以運用談判工具爭取更多。本章強調：談判沒有一招打天下的方法，必須視人、情境與目標而定；而最常被忽略、也最有效的組合，是「善用標準加上建立真實的人際關係」。
+  </div>
+
+  <span class="section-label">核心重點</span>
+  <ul class="points-list">
+    <li><strong>以標準為基礎發問</strong>：不要直接要求折扣，而是透過提問把對方的標準帶入對話，讓對方自行得出「應該給你更好條件」的結論。</li>
+    <li><strong>建立真實的人際關係</strong>：認識店員、客服人員的名字，在充滿敵意的消費世界裡展現善意。人際連結可以替代金錢。</li>
+    <li><strong>交換與串連</strong>：把單次消費串連成長期顧客關係或互惠資訊，把餅做大。</li>
+    <li><strong>了解對方的風險知覺，循序漸進</strong>：把大要求拆成小步驟、試用期或分階段合作。</li>
+    <li><strong>面對家族事業要特別注重情感與無形需求</strong>：家族企業的決策往往受自尊、傳承、感情驅動，找出並滿足無形需求比提高出價更能促成交易。</li>
+  </ul>
+
+  <span class="section-label">真實案例</span>
+  <div class="case-card"><strong>布魯明岱爾百貨的鞋子</strong>：學生以「幫你銷貨」的角度切入，引用百貨業成本結構知識，以一百六十美元成交（原價二百五十美元）。</div>
+  <div class="case-card"><strong>威訊無線的帳單申訴</strong>：以提問方式問客服「這符合威訊的客服標準嗎？」最終不只解決帳單問題，還獲得兩個月免費通話。</div>
+  <div class="case-card"><strong>買二手 Lexus</strong>：事先研究市場行情，將資料傳真給經銷商，不需開口對方就主動降價，省下數千美元。</div>
+  <div class="case-card"><strong>收購成衣公司</strong>：通過角色轉換發現老闆的真正需求是留任感與身份認同，滿足無形要求後，順利完成四千二百萬美元收購。</div>
+  <div class="case-card"><strong>喬希在熟食店的談判</strong>：付全價、主動聊棒球、留下小費。用一美元的小費和真誠的對話，換來有形的實惠。</div>
+
+  <div class="quote-box">買東西不先問有沒有折扣的人都會浪費錢，連億萬富翁都說他們會要求折扣。</div>
+  <div class="quote-box">關係是一種精神付出，在充滿煩惱的世界裡可以替代金錢。</div>
+</div>
+
+<!-- ============ CH11 ============ -->
+<div class="tab-panel" id="ch11">
+  <h2 class="ch-title">第十一章：人際之間的談判</h2>
+  <p class="ch-subtitle">Chapter 11 · Relationships</p>
+
+  <span class="section-label">章節主旨</span>
+  <div class="summary-text">
+    本章探討如何將談判工具系統性地運用於各類人際關係——包括伴侶、朋友、同事與家人——核心主張是：多數關係問題源於缺乏了解與溝通不良，而非需要專業人士介入，只要掌握動之以情、循序漸進、找共同敵人、交換評價不相等的東西、理解對方想法、運用標準等工具，便能大幅改善或拯救任何關係。
+  </div>
+
+  <span class="section-label">核心重點</span>
+  <ul class="points-list">
+    <li><strong>動之以情是關係的基石</strong>：威脅只會讓人漸行漸遠；同理、道歉、讓步、顧及對方顏面，才能凝聚關係。</li>
+    <li><strong>循序漸進，不要一步到位</strong>：在關係中要改變對方的立場，步驟過大反而像威脅。應先肯定對方感受，再一步步引導。</li>
+    <li><strong>了解對方腦中真正的想法</strong>：「不去紐約」可能不是真的不想去，而是擔心沒有院子、太貴、離家鄉遠；找出真正的關切，才能提出有效的解決方案。</li>
+    <li><strong>交換評價不相等的東西</strong>：在關係中，雙方對同一件事的重視程度不同，這正是達成雙贏的機會。</li>
+    <li><strong>信任是所有關係的根本</strong>：在情感關係中，坦承壞消息反而能鞏固信任，悶著不說只會讓問題惡化。</li>
+  </ul>
+
+  <span class="section-label">真實案例</span>
+  <div class="case-card"><strong>戴克與妻子搬家的案例</strong>：妻子因搬往加州而情緒崩潰，戴克選擇整整六小時只聆聽，不說任何話，待其情緒平穩後才開始描述新生活的正面遠景。</div>
+  <div class="case-card"><strong>亞瓊爭取球星出席會議</strong>：透過角色轉換發現球星最在乎地位與媒體曝光，因此以電視專訪等替代方案，讓球星接受搭乘經濟艙。</div>
+  <div class="case-card"><strong>卡拉巴羅夫妻的宗教信仰談判</strong>：兩人先共同訂立六條溝通基本原則，才能一步步推進孩子宗教教育的協議。</div>
+  <div class="case-card"><strong>傑森為婚禮禮品認購店與母親的協商</strong>：透過標準式提問，引導母親自己得出有利的結論，並發現母親真正想要的是多參與婚禮規劃。</div>
+  <div class="case-card"><strong>德凡與養狗的談判</strong>：以提問引導妻子思考現實問題，在情緒升溫時主動喊停休息，最終以承諾在八個月後養狗，讓雙方皆大歡喜。</div>
+
+  <div class="quote-box">「在關係中讓人凝聚在一起的最強方法是動之以情。不動之以情，關係難以長存。」</div>
+  <div class="quote-box">「耍手段是在說服對方的過程中傷害對方；有效的談判則是讓對方做對自己有利的事。」</div>
+</div>
+
+<!-- ============ CH12 ============ -->
+<div class="tab-panel" id="ch12">
+  <h2 class="ch-title">第十二章：親子之間的談判</h2>
+  <p class="ch-subtitle">Chapter 12 · Kids and Parents</p>
+
+  <span class="section-label">章節主旨</span>
+  <div class="summary-text">
+    本章主張親子談判並非特殊技巧，而是將本書所有工具——動之以情、角色互換、給予決策權、交換評價不相等的東西、循序漸進、標準——有意識地應用於親子關係中。父母對待孩子的方式決定了談判的結果，也決定了孩子是否願意合作；尊重孩子、聆聽孩子、讓孩子參與決策，不僅能解決眼前的衝突，更能培養出一輩子可靠的親密關係。
+  </div>
+
+  <span class="section-label">核心重點</span>
+  <ul class="points-list">
+    <li><strong>先了解孩子腦中的想法，而非假設</strong>：孩子挑食、不睡覺、鬧脾氣，背後往往有更深層的原因。必須先提問，而非自行猜測。</li>
+    <li><strong>給孩子決策權，是化解抵抗的關鍵</strong>：孩子的核心不安全感來自於「缺乏掌控感」。讓孩子自選牙刷、挑選餐廳、參與制定規則，能培養自主性與自信。</li>
+    <li><strong>聆聽孩子的說法，並以身作則</strong>：75% 的青少年認為「被父母聆聽和了解」是親子和諧的關鍵，但只有 41% 的父母這麼認為。</li>
+    <li><strong>以孩子的需求來表述</strong>：告訴孩子「沙發椅套很貴」沒有效果，但說「地板更平，車子可以跑得更快」就能讓孩子乖乖換位置。</li>
+    <li><strong>拒絕體罰，改用談判工具</strong>：大量研究顯示體罰會導致孩子更暴力、智商下降、行為問題增加。</li>
+  </ul>
+
+  <span class="section-label">真實案例</span>
+  <div class="case-card"><strong>建築師與女兒錯過巴士的問題</strong>：透過角色互換發現女兒遲到是為了「多陪爸爸」，以「按時搭車換來週六共同活動」作為交換。</div>
+  <div class="case-card"><strong>三歲男孩堅持在父母房間吃飯</strong>：叔叔讓他「帶路」，發現原來孩子只是想坐高腳凳「像大人一樣」，把凳子搬到飯廳就解決了。</div>
+  <div class="case-card"><strong>四歲兒子邁可與游泳恐懼</strong>：父親循序漸進：頻繁泡澡 → 淺水區站著玩 → 戴泳圈 → 正式課程 → 課後披薩，最終孩子參加了游泳錦標賽。</div>
+  <div class="case-card"><strong>劉英父子的電視與鋼琴談判</strong>：建立點數獎勵系統，讓孩子少看電視可換取玩樂高或去動物園的機會。</div>
+  <div class="case-card"><strong>十一歲的艾比蓋兒自製合約</strong>：孩子主動以電腦打出「合約」，列出雙方責任與條款，讓媽媽簽名。</div>
+
+  <div class="quote-box">「小孩子通常比大人更善於談判，原因在於小孩子往往會憑本能做出本書所主張的方法。」</div>
+  <div class="quote-box">「孩子達成你目標的意願，與你對待他們的方式息息相關。尊重孩子可以訓練他們也尊重你。」</div>
+</div>
+
+<!-- ============ CH13 ============ -->
+<div class="tab-panel" id="ch13">
+  <h2 class="ch-title">第十三章：出差旅行的談判</h2>
+  <p class="ch-subtitle">Chapter 13 · Travel</p>
+
+  <span class="section-label">章節主旨</span>
+  <div class="summary-text">
+    本章以旅遊場景（航空、旅館、租車、執法人員）為舞台，示範如何將全書談判工具應用於日常出行。核心信念是：旅遊業服務人員普遍擁有給予優惠的裁量空間，而能否爭取到更多，取決於你的態度與準備，而非大聲抱怨。
+  </div>
+
+  <span class="section-label">核心重點</span>
+  <ul class="points-list">
+    <li><strong>堅持，但不做奧客</strong>：被拒絕一次、兩次甚至五次都不應放棄，但大吼大叫只會讓航空公司在電腦裡留下惡意客戶紀錄。</li>
+    <li><strong>運用對方的服務標準</strong>：找出並引用對方的品牌承諾，指出「承諾的服務」與「實際提供的服務」之間的落差。</li>
+    <li><strong>以細節增加可信度</strong>：提供具體細節（對話時間、員工姓名、票根實物）讓你的請求更真實。</li>
+    <li><strong>先關心對方，再提自己的需求</strong>：先站在服務人員的角度思考，讓對方覺得你是值得幫助的人。</li>
+    <li><strong>找到能做決定的人</strong>：不要浪費時間在沒有權力的窗口，第一時間請求找有決策權的主管。</li>
+  </ul>
+
+  <span class="section-label">真實案例</span>
+  <div class="case-card"><strong>浴室螞蟻事件</strong>：在高級旅館發現浴室爬滿螞蟻，連問三個問題：「你們是不是最好的旅館？是不是以服務自豪？那螞蟻也是服務的一部分？」立刻獲得房間升等、免費晚餐與香檳。</div>
+  <div class="case-card"><strong>維珍航空候補機位</strong>：花十分鐘聊蜜月旅行，再介紹父親年邁多病、全家是維珍忠誠顧客，最終免付改票費。</div>
+  <div class="case-card"><strong>讓飛機回頭</strong>：嬌生公司主管趕不上轉機，舉起雙臂與機師建立眼神接觸。機師把飛機開回了登機門——一句話未說，卻是一場完整的談判。</div>
+  <div class="case-card"><strong>海關罰鍰從 2,500 降至 33 美元</strong>：不辯解、不憤怒，一直感謝海關人員的盡職盡責，坦承自己的錯誤，罰款降至三十三美元。</div>
+  <div class="case-card"><strong>加勒比海郵輪降價補償</strong>：以正面態度請教經理「早買的客人是否有補救方案」，最終獲得三百五十美元的船上消費額度。</div>
+
+  <div class="quote-box">「當你愈是能從他人的角度來看事情，對方就愈能感受到你很努力要從他們的角度看事情，你不是個不講理的客人。」</div>
+  <div class="quote-box">「有時候『沒有』不代表真的『沒有』。」</div>
+</div>
+
+<!-- ============ CH14 ============ -->
+<div class="tab-panel" id="ch14">
+  <h2 class="ch-title">第十四章：日常生活，無處不是談判</h2>
+  <p class="ch-subtitle">Chapter 14 · Everyday Negotiation</p>
+
+  <span class="section-label">章節主旨</span>
+  <div class="summary-text">
+    日常生活中的每一次互動——乾洗店、公寓管理、銀行、餐廳、執法人員——都是談判的練習場。本章透過大量真實案例，示範如何將七大核心工具（標準與表述、不等值交換、畫面感、找到真正的決策者、建立連結、保住對方面子、把問題交給對方解決）靈活運用在最平凡的日常場景中。
+  </div>
+
+  <span class="section-label">核心重點</span>
+  <ul class="points-list">
+    <li><strong>標準與表述</strong>：用對方自己的標準反問，冷靜呈現事實。</li>
+    <li><strong>不等值交換</strong>：找出對方重視但你容易提供的東西。</li>
+    <li><strong>畫面感</strong>：讓對方腦海中出現具體情境，細節愈多效果愈好。</li>
+    <li><strong>找到真正的決策者</strong>：跳過中間人，直接找能解決問題的人。</li>
+    <li><strong>建立連結</strong>：問對方的興趣、背景，讓對方感受到被尊重。</li>
+  </ul>
+
+  <span class="section-label">真實案例</span>
+  <div class="case-card"><strong>乾洗店系列</strong>：洛胡以固定客身份直接開口問折扣拿到九折；賈斯汀衣服被洗壞後，不指責而引用老客戶身份，最終拿到一百美元的免費乾洗額度。</div>
+  <div class="case-card"><strong>公寓老鼠問題</strong>：四種做法從「只拿到捕鼠器」到「廚房全面翻修」，其中最有效的是畫面感——「我兩歲的女兒指著老鼠說：媽咪，妳看！」</div>
+  <div class="case-card"><strong>銀行貸款利率</strong>：史蒂芬質問「你們是不是把新客戶看得比老客戶重要？」，以太太名義申請新貸款取得最低利率。</div>
+  <div class="case-card"><strong>餐廳穿著規定</strong>：約翰被拒入場後，念出訂位時服務人員說的規定中沒有禁止牛仔褲，順利入場。</div>
+  <div class="case-card"><strong>被攔超速</strong>：卡洛斯主動道歉、注意到警察懷孕並道賀，十五年來第一次沒有跟警察吵，也是第一次沒被開單。</div>
+
+  <div class="quote-box">「你和對方建立的連結愈強，對方就愈願意幫你達成你想要的目標。」</div>
+  <div class="quote-box">「使用談判工具不保證百分之百成功，但能讓成功的機會增加，讓你得到更多。」</div>
+</div>
+
+<!-- ============ CH15 ============ -->
+<div class="tab-panel" id="ch15">
+  <h2 class="ch-title">第十五章：在公共議題上，也要爭取更多</h2>
+  <p class="ch-subtitle">Chapter 15 · Public Issues</p>
+
+  <span class="section-label">章節主旨</span>
+  <div class="summary-text">
+    本章將全書的談判工具擴展至國際衝突、恐怖主義、環境議題與墮胎等公共議題上。作者認為，超過九成的公共議題之所以惡化，根本原因不在議題本身，而在於「人」與「流程」的失敗——溝通不足、知覺差異被忽視、以威脅代替合作，以及忽視人民的基本生存需求。
+  </div>
+
+  <span class="section-label">核心重點</span>
+  <ul class="points-list">
+    <li><strong>問題九成出在「人」與「流程」</strong>：各種協議的失敗，真正出在事情本質的情況不到一成。</li>
+    <li><strong>溝通是一切的前提</strong>：無論立場多麼對立，不對話就絕無說服可能。</li>
+    <li><strong>合作姿態優於對抗姿態</strong>：以威脅為核心的策略（制裁、武力）在歷史上鮮少有效。</li>
+    <li><strong>滿足基本需求才能贏得人心</strong>：真正能瓦解極端主義的，不是軍事打擊，而是食物、醫療、教育與就業機會。</li>
+    <li><strong>循序漸進，而非一步登天</strong>：任何想「一次解決所有問題」的人，其實都不是適合的談判代表。</li>
+  </ul>
+
+  <span class="section-label">真實案例</span>
+  <div class="case-card"><strong>阿富汗部落結盟</strong>：美軍改變策略，與部落領袖共守齋戒儀式、贈送筆記本給兒童，成功交換評價不相等的東西，取得當地支持。</div>
+  <div class="case-card"><strong>哥倫比亞 FARC 和談</strong>：使用「爭取更多」模式後，發現核心問題不是「放下武器」，而是工作機會與社會融入，最終在哈瓦那開啟談判。</div>
+  <div class="case-card"><strong>北韓核武困局</strong>：布希政府將北韓列為「邪惡軸心」反而加速核武發展；柯林頓前總統親赴北韓表達尊重後，北韓釋放被囚美國記者。</div>
+  <div class="case-card"><strong>墮胎議題的重新表述</strong>：重新塑造議題為「較多墮胎」對「較少墮胎」——雙方其實都同意減少墮胎是好事——以此為共同基礎。</div>
+  <div class="case-card"><strong>南非大白鯊類比</strong>：當人的基本需求獲得滿足，對鬥爭的興趣便大幅降低。</div>
+
+  <div class="quote-box">「各種協議的成敗，真正問題出在事情本質的情況只有不到一成，有超過九成的情況，其實問題都是在於『人』和『流程』。」</div>
+  <div class="quote-box">「中東和平進程的歷史，一直只是追求一種『儀式上的和平』……然而想得到人民支持，需要的是『實用上的和平』。」</div>
+</div>
+
+<!-- ============ CH16 ============ -->
+<div class="tab-panel" id="ch16">
+  <h2 class="ch-title">第十六章：現在上場，身體力行！</h2>
+  <p class="ch-subtitle">Chapter 16 · Getting Started</p>
+
+  <span class="section-label">章節主旨</span>
+  <div class="summary-text">
+    本章是全書的實戰總結，提供一套可直接套用的談判執行範本。從心理準備、時間地點的安排、開場建立關係、議程設定、資訊揭露策略、首次報價的判斷、極端報價的應對，到承諾的落實與責任分配，逐步回顧全書核心工具，並強調「循序漸進」是貫穿整個談判過程的最高原則。
+  </div>
+
+  <span class="section-label">核心重點</span>
+  <ul class="points-list">
+    <li><strong>態度決定成敗</strong>：談判前要先在心理上準備妥當，預先想像最壞的情況，消除恐懼感。正如亨利·福特所說，「你覺得自己做得到或做不到，兩者都會成真。」</li>
+    <li><strong>帶著議程進場</strong>：即使是短暫的談判，也要事先準備書面議程。先從容易達成共識的議題開始。</li>
+    <li><strong>時間壓力有害無益</strong>：在時間壓力下，協議品質下降、判斷力變差、情緒介入增加。</li>
+    <li><strong>首次報價的黃金法則</strong>：若對談判範圍掌握充分，主動報價可帶來三到五個百分點的優勢；若範圍不確定，則應先讓對方報價。</li>
+    <li><strong>承諾需要具體機制保障</strong>：真正有效的承諾必須由對方自己提出，並明確討論執行時間表、責任人與違約後果。</li>
+  </ul>
+
+  <span class="section-label">真實案例</span>
+  <div class="case-card"><strong>帶議程的顧問凱琳．亞達莉安</strong>：全場唯一準備一頁書面議程的人，結果她主導了整場討論節奏，想爭取的事項幾乎全數達成。</div>
+  <div class="case-card"><strong>餐桌議價失誤的查理．史密斯</strong>：不確定折扣空間時讓店員先開口，對方主動給出三百、五百，最終加贈免費送貨與稅金，總折扣達八百美元。</div>
+  <div class="case-card"><strong>天安門廣場的無名男子</strong>：1989 年獨自一人站在坦克前，用身體語言建立了與坦克駕駛之間的人性連結，改變了整個權力平衡。</div>
+  <div class="case-card"><strong>核電廠被民間聯盟打敗</strong>：一群看似毫無權力的家庭主婦、退休人士與大學生，靠著研究、標準與公眾說服，讓核電盈利幾乎蒸發。</div>
+  <div class="case-card"><strong>旅館在對方地盤上的心理主導</strong>：作者在對方的會議室刻意靠椅背、把腳放上對方的會議桌，傳達「我在這裡也如在家一樣輕鬆」的訊號。</div>
+
+  <div class="quote-box">「時間壓力對談判有害無益。」</div>
+  <div class="quote-box">「你已經準備好了！現在就身體力行、爭取更多！」</div>
+</div>
+
+</div><!-- /container -->
+
+<footer>
+  <div class="book-info">《華頓商學院最受歡迎的談判課》— 史都華．戴蒙（Stuart Diamond）著</div>
+  <div>Generated by Draco 🐉 | Powered by OpenClaw</div>
+</footer>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn');
+  var panels = document.querySelectorAll('.tab-panel');
+  var nav = document.getElementById('tabNav');
+
+  function activate(id) {
+    btns.forEach(function(b) { b.classList.toggle('active', b.dataset.tab === id); });
+    panels.forEach(function(p) { p.classList.toggle('active', p.id === id); });
+    var activeBtn = nav.querySelector('.tab-btn.active');
+    if (activeBtn) {
+      activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var id = btn.dataset.tab;
+      history.replaceState(null, '', '#' + id);
+      activate(id);
+    });
+  });
+
+  function onHash() {
+    var h = location.hash.replace('#', '');
+    if (h && document.getElementById(h)) { activate(h); }
+  }
+  window.addEventListener('hashchange', onHash);
+  if (location.hash) { onHash(); }
+})();
+</script>
+</body>
+</html>
