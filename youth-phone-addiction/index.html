@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>不是想活在手機世界——青少年手機成癮的真相與解方</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f5f3ff;
+      --surface: #ffffff;
+      --text: #1e1b4b;
+      --text-secondary: #64748b;
+      --accent: #7c3aed;
+      --accent-light: #a78bfa;
+      --accent-bg: #ede9fe;
+      --accent-border: #c4b5fd;
+      --warn-bg: #fef3c7;
+      --warn-border: #fde68a;
+      --warn-text: #92400e;
+      --info-bg: #ede9fe;
+      --info-border: #c4b5fd;
+      --info-text: #5b21b6;
+      --green-bg: #ecfdf5;
+      --green-border: #a7f3d0;
+      --green-text: #065f46;
+      --border: #e2e8f0;
+      --shadow: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+      --gradient: linear-gradient(135deg, #6d28d9, #7c3aed, #4f46e5);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f0b2e;
+        --surface: #1e1847;
+        --text: #f1f5f9;
+        --text-secondary: #94a3b8;
+        --accent: #a78bfa;
+        --accent-light: #c4b5fd;
+        --accent-bg: #2e1065;
+        --accent-border: #6d28d9;
+        --warn-bg: #422006;
+        --warn-border: #92400e;
+        --warn-text: #fde68a;
+        --info-bg: #2e1065;
+        --info-border: #6d28d9;
+        --info-text: #c4b5fd;
+        --green-bg: #064e3b;
+        --green-border: #065f46;
+        --green-text: #a7f3d0;
+        --border: #312e81;
+        --shadow: 0 1px 3px rgba(0,0,0,0.3);
+        --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+        --gradient: linear-gradient(135deg, #7c3aed, #a78bfa, #818cf8);
+      }
+    }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 800px; margin: 0 auto; padding: 0 1.25rem; }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 4rem 1rem 3rem;
+    }
+    .hero-emoji { font-size: 3rem; margin-bottom: 1rem; display: block; }
+    .hero h1 {
+      font-size: 2.1rem;
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 0.75rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero .subtitle {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .hero .audience {
+      display: inline-flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .hero .audience span {
+      background: var(--accent-bg);
+      color: var(--accent);
+      border: 1px solid var(--accent-border);
+      border-radius: 20px;
+      padding: 0.25rem 0.85rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    /* Sections */
+    section { padding: 2rem 0; }
+    .section-title {
+      font-size: 1.45rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-title .num {
+      background: var(--gradient);
+      color: #fff;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 0.75rem;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .card-grid .card { margin-bottom: 0; text-align: center; }
+    .card-grid .card .emoji { font-size: 2rem; display: block; margin-bottom: 0.5rem; }
+
+    /* Feature list items */
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.75rem 0;
+    }
+    .feature-item .icon {
+      flex-shrink: 0;
+      font-size: 1.2rem;
+      margin-top: 0.15rem;
+    }
+    .feature-item p { font-size: 0.95rem; }
+    .feature-item strong { color: var(--accent); }
+
+    /* Appearance Signs */
+    .signs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .sign-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .sign-card .emoji { font-size: 2.2rem; display: block; margin-bottom: 0.5rem; }
+    .sign-card .label { font-size: 0.9rem; font-weight: 600; }
+
+    /* Stat highlight */
+    .stat-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 1.25rem 0;
+    }
+    .stat-box {
+      flex: 1;
+      min-width: 180px;
+      background: var(--accent-bg);
+      border: 1px solid var(--accent-border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      text-align: center;
+    }
+    .stat-box .number {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      display: block;
+    }
+    .stat-box .desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-top: 0.25rem;
+    }
+
+    /* Indicator grid */
+    .indicator-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    .indicator-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      box-shadow: var(--shadow);
+    }
+    .indicator-card .char {
+      display: inline-block;
+      background: var(--gradient);
+      color: #fff;
+      font-size: 1.5rem;
+      font-weight: 700;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      text-align: center;
+      line-height: 44px;
+      margin-bottom: 0.5rem;
+    }
+    .indicator-card .name {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.35rem;
+    }
+    .indicator-card p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Brain science list */
+    .brain-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .brain-list li {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.95rem;
+    }
+    .brain-list li .icon { flex-shrink: 0; font-size: 1.2rem; }
+
+    /* Callout */
+    .callout {
+      border-radius: 12px;
+      padding: 1.5rem 1.75rem;
+      margin: 1.5rem 0;
+    }
+    .callout-warn {
+      background: var(--warn-bg);
+      border: 2px solid var(--warn-border);
+    }
+    .callout-warn .callout-title { color: var(--warn-text); }
+    .callout-warn p { color: var(--warn-text); }
+    .callout-info {
+      background: var(--info-bg);
+      border: 2px solid var(--info-border);
+    }
+    .callout-info .callout-title { color: var(--info-text); }
+    .callout-info p { color: var(--info-text); }
+    .callout-green {
+      background: var(--green-bg);
+      border: 2px solid var(--green-border);
+    }
+    .callout-green .callout-title { color: var(--green-text); }
+    .callout-green p { color: var(--green-text); }
+    .callout .callout-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .callout p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* Solution section */
+    .solution-category {
+      margin-bottom: 1.5rem;
+    }
+    .solution-category h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .solution-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .solution-list li {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.85rem 1.15rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.92rem;
+    }
+    .solution-list li .icon { flex-shrink: 0; font-size: 1.1rem; }
+    .solution-list li strong { color: var(--accent); }
+
+    /* Iceberg */
+    .iceberg {
+      text-align: center;
+      margin: 1.5rem 0;
+    }
+    .iceberg-visual {
+      position: relative;
+      display: inline-block;
+      width: 280px;
+    }
+    .iceberg-top {
+      background: var(--accent-bg);
+      border: 2px solid var(--accent-border);
+      border-radius: 12px 12px 0 0;
+      padding: 1.25rem;
+      position: relative;
+    }
+    .iceberg-waterline {
+      height: 4px;
+      background: var(--gradient);
+      width: 100%;
+    }
+    .iceberg-bottom {
+      background: var(--surface);
+      border: 2px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 16px 16px;
+      padding: 1.25rem;
+    }
+    .iceberg-top .label, .iceberg-bottom .label {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .iceberg-top .sub { font-size: 0.8rem; color: var(--text-secondary); }
+    .iceberg-bottom .sub { font-size: 0.8rem; color: var(--text-secondary); }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      margin-top: 1rem;
+    }
+
+    /* Mobile */
+    @media (max-width: 640px) {
+      .hero { padding: 3rem 0.5rem 2rem; }
+      .hero h1 { font-size: 1.55rem; }
+      .hero .subtitle { font-size: 1.05rem; }
+      .section-title { font-size: 1.2rem; }
+      .signs-grid { grid-template-columns: 1fr; }
+      .indicator-grid { grid-template-columns: 1fr; }
+      .stat-row { flex-direction: column; }
+      .iceberg-visual { width: 240px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Hero -->
+    <section class="hero">
+      <span class="hero-emoji">📱</span>
+      <h1>不是想活在手機世界——<br>青少年手機成癮的真相與解方</h1>
+      <div class="subtitle">精神科醫師馬大元：滑手機是能量低的結果，不是原因</div>
+      <div class="audience">
+        <span>👨‍👩‍👧 家長</span>
+        <span>👩‍🏫 教師</span>
+        <span>🧑‍⚕️ 特教工作者</span>
+      </div>
+    </section>
+
+    <!-- Section 1: Root Cause -->
+    <section>
+      <h2 class="section-title"><span class="num">1</span> 手機成癮的真正原因</h2>
+
+      <p style="font-size: 1.05rem; margin-bottom: 1.25rem;">你以為孩子只是「太愛滑手機」？其實背後有更深層的生理與心理因素。</p>
+
+      <h3 style="font-size: 1rem; font-weight: 600; margin-bottom: 0.75rem;">👀 三大外觀特徵</h3>
+      <div class="signs-grid">
+        <div class="sign-card">
+          <span class="emoji">👁️</span>
+          <span class="label">眼睛發直</span>
+        </div>
+        <div class="sign-card">
+          <span class="emoji">🪑</span>
+          <span class="label">沒有屁股<br><small style="color:var(--text-secondary)">（久坐不動）</small></span>
+        </div>
+        <div class="sign-card">
+          <span class="emoji">💅</span>
+          <span class="label">指甲極長<br><small style="color:var(--text-secondary)">（忽略自理）</small></span>
+        </div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-box">
+          <span class="number">80%</span>
+          <span class="desc">手機成癮背後是「低能量憂鬱症」</span>
+        </div>
+        <div class="stat-box">
+          <span class="number">50–80%</span>
+          <span class="desc">成癮是<strong>生理因素</strong>造成的</span>
+        </div>
+      </div>
+
+      <div class="callout callout-info">
+        <div class="callout-title">💡 關鍵觀念翻轉</div>
+        <p>滑手機是能量低的<strong>結果</strong>，而非<strong>原因</strong>。<br>孩子不是因為愛玩手機才沒精神，而是因為沒精神才只能滑手機。</p>
+      </div>
+    </section>
+
+    <!-- Section 2: Indicators -->
+    <section>
+      <h2 class="section-title"><span class="num">2</span> 判斷成癮的四大指標「無奈姐夫」</h2>
+
+      <div class="indicator-grid">
+        <div class="indicator-card">
+          <div class="char">無</div>
+          <div class="name">無法停止</div>
+          <p>考試期間也無法放下手機，控制力完全喪失</p>
+        </div>
+        <div class="indicator-card">
+          <div class="char">奈</div>
+          <div class="name">耐受性</div>
+          <p>胃口越來越大，要求使用更長時間才能滿足</p>
+        </div>
+        <div class="indicator-card">
+          <div class="char">姐</div>
+          <div class="name">戒斷症狀</div>
+          <p>沒收手機時出現暴力行為或躺平抗議</p>
+        </div>
+        <div class="indicator-card">
+          <div class="char">夫</div>
+          <div class="name">負面效應</div>
+          <p>明知有害（成績下滑、睡眠不足）仍繼續使用</p>
+        </div>
+      </div>
+
+      <div class="callout callout-warn" style="margin-top: 1.25rem;">
+        <div class="callout-title">⚠️ 符合其中兩項以上，就需要正視問題</div>
+        <p>不要等到四項全中才開始處理——早期介入效果最好。</p>
+      </div>
+    </section>
+
+    <!-- Section 3: Brain Science -->
+    <section>
+      <h2 class="section-title"><span class="num">3</span> 大腦神經科學：虛假的心流</h2>
+
+      <ul class="brain-list">
+        <li>
+          <span class="icon">🧪</span>
+          <div><strong>血清素不足</strong> → 社交焦慮，逃入網路尋求虛擬社交</div>
+        </li>
+        <li>
+          <span class="icon">⚡</span>
+          <div><strong>多巴胺不足</strong> → 行動力與專注力缺乏，難以啟動任何任務</div>
+        </li>
+        <li>
+          <span class="icon">🎬</span>
+          <div><strong>短影音製造「虛假心流」</strong>，大量消耗多巴胺後反而更無力讀書</div>
+        </li>
+        <li>
+          <span class="icon">🍼</span>
+          <div><strong>「奶嘴樂」效應</strong>——廉價娛樂消磨雄心壯志，讓人停留在舒適區</div>
+        </li>
+        <li>
+          <span class="icon">🧠</span>
+          <div>連續打<strong>一週</strong>射擊電玩，<strong>前額葉開始退化</strong>——決策力與自控力下降</div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Section 4: Parents' Blind Spots -->
+    <section>
+      <h2 class="section-title"><span class="num">4</span> 父母的盲點：關係比技巧更重要</h2>
+
+      <div class="iceberg">
+        <div class="iceberg-visual">
+          <div class="iceberg-top">
+            <span class="label">📱 手機成癮</span><br>
+            <span class="sub">冰山一角（可見行為）</span>
+          </div>
+          <div class="iceberg-waterline"></div>
+          <div class="iceberg-bottom">
+            <span class="label">😔 低能量、憂鬱、焦慮<br>社交困難、自我價值低落</span><br>
+            <span class="sub">冰山下的真正問題</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="feature-item">
+          <span class="icon">🔄</span>
+          <p>放下<strong>「我是對的」</strong>心態，改為<strong>「我想了解更多」</strong></p>
+        </div>
+        <div class="feature-item">
+          <span class="icon">💬</span>
+          <p>心理學家羅傑斯：改變孩子的關鍵是<strong>「關係」</strong>，不是說教</p>
+        </div>
+        <div class="feature-item">
+          <span class="icon">🕊️</span>
+          <p>第一步：宣告<strong>「休戰」</strong>，接納孩子目前的狀態，重建信任</p>
+        </div>
+        <div class="feature-item">
+          <span class="icon">🧊</span>
+          <p>手機只是冰山一角，<strong>冰山下才是真正的問題</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Solutions -->
+    <section>
+      <h2 class="section-title"><span class="num">5</span> 具體解方</h2>
+
+      <div class="solution-category">
+        <h4>🍳 生理面：補充大腦所需營養</h4>
+        <ul class="solution-list">
+          <li>
+            <span class="icon">🥚</span>
+            <div><strong>早餐補充蛋白質</strong>——酪胺酸是多巴胺的原料，讓大腦有動力</div>
+          </li>
+          <li>
+            <span class="icon">🦪</span>
+            <div><strong>補充鋅</strong>——帶殼海鮮、牡蠣、動物肝臟，穩定神經傳導</div>
+          </li>
+          <li>
+            <span class="icon">🥦</span>
+            <div><strong>補充鎂 + B6</strong>——綠色蔬菜，幫助血清素合成</div>
+          </li>
+          <li>
+            <span class="icon">🐟</span>
+            <div><strong>補充 EPA 魚油</strong>——降低大腦發炎，改善情緒與專注</div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="solution-category">
+        <h4>🏃 行為面：重建動力與自控</h4>
+        <ul class="solution-list">
+          <li>
+            <span class="icon">💪</span>
+            <div><strong>培養運動習慣</strong>——促進 BDNF（腦源性神經營養因子）、多巴胺、血清素</div>
+          </li>
+          <li>
+            <span class="icon">🧘</span>
+            <div><strong>練習內觀</strong>——靜坐、正念、瑜珈、氣功，強化前額葉功能</div>
+          </li>
+          <li>
+            <span class="icon">🎯</span>
+            <div><strong>九宮格目標設定</strong>——讓孩子重新發現自己想要什麼，找回內在動機</div>
+          </li>
+          <li>
+            <span class="icon">🤝</span>
+            <div><strong>二選一提問</strong>——賦予孩子選擇權與尊重，避免直接對抗</div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="solution-category">
+        <h4>👶 預防面：5–6 歲前是關鍵</h4>
+        <ul class="solution-list">
+          <li>
+            <span class="icon">🚫</span>
+            <div><strong>拒絕「數位保母」</strong>——不用平板安撫嬰幼兒，避免大腦過早依賴螢幕刺激</div>
+          </li>
+          <li>
+            <span class="icon">🌳</span>
+            <div><strong>先讓孩子愛上真實世界</strong>，再接觸 3C——建立真實感官經驗的優先順序</div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CTA / Closing -->
+    <section>
+      <div class="callout callout-green" style="text-align: center;">
+        <div class="callout-title">🌱 改變從理解開始</div>
+        <p>不要責怪孩子，先理解他們的困境。<br>
+        <strong>補充營養 → 重建關係 → 找回動機</strong><br>
+        每一個「低能量」的孩子，都值得被好好接住。</p>
+      </div>
+    </section>
+
+    <footer>Generated by Draco 🐉 | Powered by OpenClaw</footer>
+  </div>
+
+</body>
+</html>
