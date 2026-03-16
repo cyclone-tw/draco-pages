@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>用 AI 輔助 IEP 產出 — 讓教師專注在最重要的事</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #1e293b;
+      --text-secondary: #64748b;
+      --accent: #2563eb;
+      --accent-light: #3b82f6;
+      --accent-bg: #eff6ff;
+      --accent-border: #bfdbfe;
+      --warn-bg: #fffbeb;
+      --warn-border: #fde68a;
+      --warn-text: #92400e;
+      --border: #e2e8f0;
+      --shadow: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+      --gradient: linear-gradient(135deg, #2563eb, #3b82f6);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f172a;
+        --surface: #1e293b;
+        --text: #f1f5f9;
+        --text-secondary: #94a3b8;
+        --accent: #60a5fa;
+        --accent-light: #93bbfc;
+        --accent-bg: #1e3a5f;
+        --accent-border: #2563eb;
+        --warn-bg: #422006;
+        --warn-border: #92400e;
+        --warn-text: #fde68a;
+        --border: #334155;
+        --shadow: 0 1px 3px rgba(0,0,0,0.3);
+        --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+        --gradient: linear-gradient(135deg, #3b82f6, #60a5fa);
+      }
+    }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 800px; margin: 0 auto; padding: 0 1.25rem; }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 4rem 1rem 3rem;
+    }
+    .hero h1 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero .subtitle {
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .hero .desc {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* Section */
+    section { padding: 2.5rem 0; }
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    /* Pain Points */
+    .pain-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .pain-list li {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.95rem;
+    }
+    .pain-list li::before {
+      content: '😩';
+      flex-shrink: 0;
+      font-size: 1.2rem;
+    }
+
+    /* AI Table */
+    .ai-table-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .ai-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .ai-table th {
+      background: var(--accent);
+      color: #fff;
+      font-weight: 600;
+      text-align: left;
+      padding: 0.85rem 1.25rem;
+      font-size: 0.9rem;
+    }
+    .ai-table td {
+      padding: 0.85rem 1.25rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+    .ai-table tr:last-child td { border-bottom: none; }
+    .ai-table td:first-child {
+      font-weight: 600;
+      white-space: nowrap;
+      color: var(--accent);
+    }
+    @media (prefers-color-scheme: dark) {
+      .ai-table th { background: var(--accent-border); }
+    }
+
+    /* Workflow */
+    .workflow {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    .workflow-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      flex: 0 0 auto;
+      max-width: 130px;
+    }
+    .workflow-step .icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--accent-bg);
+      border: 2px solid var(--accent-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+    .workflow-step .label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+    .workflow-arrow {
+      display: flex;
+      align-items: center;
+      padding-top: 0.75rem;
+      color: var(--accent);
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    .workflow-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-top: 0.5rem;
+    }
+    .workflow-legend div {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      box-shadow: var(--shadow);
+      flex: 1;
+      min-width: 240px;
+      max-width: 340px;
+    }
+    .workflow-legend div strong {
+      display: block;
+      margin-bottom: 0.35rem;
+      font-size: 0.9rem;
+    }
+    .workflow-legend div p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Principle callout */
+    .callout {
+      background: var(--warn-bg);
+      border: 2px solid var(--warn-border);
+      border-radius: 12px;
+      padding: 1.5rem 1.75rem;
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .callout .callout-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--warn-text);
+      margin-bottom: 0.5rem;
+    }
+    .callout p {
+      font-size: 0.95rem;
+      color: var(--warn-text);
+      line-height: 1.6;
+    }
+
+    /* Benefits */
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .benefit-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .benefit-card .emoji {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .benefit-card .stat {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+    }
+    .benefit-card p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* CTA */
+    .cta {
+      text-align: center;
+      padding: 2.5rem 1rem;
+    }
+    .cta p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 640px) {
+      .hero { padding: 3rem 0.5rem 2rem; }
+      .hero h1 { font-size: 1.65rem; }
+      .hero .subtitle { font-size: 1.1rem; }
+      .section-title { font-size: 1.25rem; }
+      .workflow { gap: 0.25rem; }
+      .workflow-step { max-width: 90px; }
+      .workflow-step .icon { width: 42px; height: 42px; font-size: 1.1rem; }
+      .workflow-step .label { font-size: 0.75rem; }
+      .workflow-arrow { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <div class="container">
+    <section class="hero">
+      <h1>用 AI 輔助 IEP 產出</h1>
+      <div class="subtitle">讓教師專注在最重要的事</div>
+      <p class="desc">從評估資料到目標擬訂，AI 協助加速流程、教師掌握最終決策</p>
+    </section>
+
+    <!-- Pain Points -->
+    <section>
+      <h2 class="section-title">IEP 為什麼這麼累？</h2>
+      <ul class="pain-list">
+        <li>每位學生要個別撰寫，格式複雜、欄位繁多</li>
+        <li>能力描述、目標擬訂、服務規劃——文字工作量龐大</li>
+        <li>時間壓力大，品質卻不能妥協</li>
+      </ul>
+    </section>
+
+    <!-- AI Can Help -->
+    <section>
+      <h2 class="section-title">AI 可以幫什麼？</h2>
+      <div class="ai-table-wrapper">
+        <table class="ai-table">
+          <thead>
+            <tr>
+              <th>階段</th>
+              <th>AI 能做的事</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>資料整理</td><td>彙整評估報告、觀察紀錄、家長意見</td></tr>
+            <tr><td>現況描述</td><td>根據測驗數據自動生成能力現況段落</td></tr>
+            <tr><td>目標擬訂</td><td>依現況建議短、長期目標初稿</td></tr>
+            <tr><td>服務規劃</td><td>對應需求產生服務類型與頻率建議</td></tr>
+            <tr><td>文字潤飾</td><td>將口語化紀錄轉換為正式書面語</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Workflow -->
+    <section>
+      <h2 class="section-title">工作流程</h2>
+      <div class="workflow">
+        <div class="workflow-step">
+          <div class="icon">📄</div>
+          <span class="label">評估資料輸入</span>
+        </div>
+        <div class="workflow-arrow">→</div>
+        <div class="workflow-step">
+          <div class="icon">🤖</div>
+          <span class="label">AI 生成初稿</span>
+        </div>
+        <div class="workflow-arrow">→</div>
+        <div class="workflow-step">
+          <div class="icon">✏️</div>
+          <span class="label">教師確認修改</span>
+        </div>
+        <div class="workflow-arrow">→</div>
+        <div class="workflow-step">
+          <div class="icon">👨‍👩‍👧</div>
+          <span class="label">家長會議</span>
+        </div>
+        <div class="workflow-arrow">→</div>
+        <div class="workflow-step">
+          <div class="icon">✅</div>
+          <span class="label">定稿</span>
+        </div>
+      </div>
+      <div class="workflow-legend">
+        <div>
+          <strong>🤖 AI 負責</strong>
+          <p>初稿生成、格式整理、文字轉換</p>
+        </div>
+        <div>
+          <strong>👩‍🏫 教師負責</strong>
+          <p>專業判斷、個別化調整、最終確認</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Principle -->
+    <section>
+      <div class="callout">
+        <div class="callout-title">⚠️ AI 是工具，不是主角</div>
+        <p>教師的專業判斷永遠優先於 AI 的生成結果。<br>AI 加速流程，不取代關係。</p>
+      </div>
+    </section>
+
+    <!-- Benefits -->
+    <section>
+      <h2 class="section-title">效益亮點</h2>
+      <div class="benefits">
+        <div class="benefit-card">
+          <span class="emoji">⏱️</span>
+          <div class="stat">減少 50–70%</div>
+          <p>初稿撰寫時間大幅縮短</p>
+        </div>
+        <div class="benefit-card">
+          <span class="emoji">📋</span>
+          <div class="stat">格式一致</div>
+          <p>減少遺漏欄位，提升文件品質</p>
+        </div>
+        <div class="benefit-card">
+          <span class="emoji">💬</span>
+          <div class="stat">更多溝通</div>
+          <p>節省的時間投入與學生、家長的真實互動</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <h2 class="section-title">想了解更多？</h2>
+      <p>歡迎交流，詢問如何在學校導入 AI 輔助 IEP 工作流</p>
+    </section>
+
+    <footer>Generated by Draco 🐉 | Powered by OpenClaw</footer>
+  </div>
+
+</body>
+</html>
